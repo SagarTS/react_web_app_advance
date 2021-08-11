@@ -11,17 +11,7 @@ var firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
 };
-
-// var firebaseConfig = {
-//   apiKey: "AIzaSyDxkz-QHbVm4Wr2nUWAHmI07Q2UnEVUAxs",
-//   authDomain: "shop-and-mall.firebaseapp.com",
-//   projectId: "shop-and-mall",
-//   storageBucket: "shop-and-mall.appspot.com",
-//   messagingSenderId: "107193307561",
-//   appId: "1:107193307561:web:4ac182c2fa9901d2ce74b8",
-//   measurementId: "G-2RQTGJHNP2"
-// };
-
+//Sagar
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
