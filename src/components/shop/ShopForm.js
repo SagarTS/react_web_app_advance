@@ -8,8 +8,16 @@ const ShopForm = ({
   index,
   shopImageState,
   shopImageDispatch,
+  shopVideoState,
+  shopVideoDispatch,
+  register,
+  errors,
+  control,
+  mallTime,
+  mallLevel,
+  videoUploadPercentage,
+  isLoading,
 }) => {
-  console.log("sh", edit);
   const closeShopForm = () => {
     dispatch({
       type: "REMOVE_SHOP_FORM",
@@ -28,7 +36,14 @@ const ShopForm = ({
         index,
         shopImageState,
         shopImageDispatch,
+        shopVideoState,
+        shopVideoDispatch,
         closeShopForm,
+        control,
+        mallTime,
+        mallLevel,
+        videoUploadPercentage,
+        isLoading,
       }}
     />
   );

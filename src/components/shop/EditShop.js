@@ -5,10 +5,22 @@ const ShopForm = ({
   edit,
   dataShop,
   editDispatch,
-  index2,
+  index,
   setImagesToRemove,
+  setRemovedVideo,
+  shopVideoState,
+  shopVideoDispatch,
   addedShopImagesDispatch,
   addedShopImages,
+  control,
+  getValues,
+  mallTime,
+  mallLevel,
+  videoUploadPercentage,
+  isLoading,
+  setRemovedVideoThumbnail,
+  setVideoThumbnail,
+  videoThumbnail,
 }) => {
   const closeShopForm = (dataShop) => {
     editDispatch({
@@ -21,6 +33,14 @@ const ShopForm = ({
       ...prevState,
       ...dataShop.shopImages.map((image) => image),
     ]);
+    if (dataShop?.shopVideo?.hasOwnProperty("url")) {
+      setRemovedVideoThumbnail((prev) => [
+        ...prev,
+        dataShop.shopVideo.thumbnail.id,
+      ]);
+
+      setRemovedVideo((prevState) => [...prevState, dataShop.shopVideo]);
+    }
   };
 
   //Remove Image
@@ -30,7 +50,21 @@ const ShopForm = ({
     editDispatch({
       type: "REMOVE_IMAGE",
       payload: {
-        img,
+        index,
+        id: img.id,
+      },
+    });
+  };
+
+  const removeVideo = (video, index) => {
+    setRemovedVideo((prevState) => [...prevState, video]);
+    setRemovedVideoThumbnail((prev) => [
+      ...prev,
+      dataShop.shopVideo.thumbnail.id,
+    ]);
+    editDispatch({
+      type: "REMOVE_VIDEO",
+      payload: {
         index,
       },
     });
@@ -42,12 +76,24 @@ const ShopForm = ({
         edit,
         dataShop,
         editDispatch,
-        index2,
+        index,
         setImagesToRemove,
         addedShopImagesDispatch,
         addedShopImages,
         removeImage,
+        removeVideo,
         closeShopForm,
+        control,
+        getValues,
+        mallTime,
+        mallLevel,
+        shopVideoState,
+        shopVideoDispatch,
+        videoUploadPercentage,
+        isLoading,
+        setRemovedVideoThumbnail,
+        setVideoThumbnail,
+        videoThumbnail,
       }}
     />
   );

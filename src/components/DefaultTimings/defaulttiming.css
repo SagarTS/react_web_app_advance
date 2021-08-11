@@ -1,0 +1,138 @@
+.timings {
+  display: flex;
+  align-items: flex-end;
+  width: 43%;
+}
+
+.timings__buttondiv {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 80%;
+  margin: 20px 0;
+}
+
+.dayinputfield {
+  text-align: left;
+  margin-right: 40px;
+}
+
+.timeinput {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeinput label {
+  margin-bottom: -10px;
+}
+
+.remove {
+  color: rgb(233, 25, 25);
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 20px 25px;
+}
+
+.mobileTime {
+  display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .timings {
+    width: 45%;
+  }
+
+  .timings__buttondiv {
+    width: 290px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .timings {
+    width: 61%;
+    /* background-color: red; */
+  }
+
+  .remove {
+    position: absolute;
+    right: 0px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .timings {
+    width: 100%;
+    position: relative;
+  }
+
+  .timings__buttondiv {
+    align-items: flex-start;
+    width: 100%;
+    /* gap: 47px; */
+    margin: 10px 0 0 0px;
+  }
+
+  .timings__buttondiv div {
+    margin: 0px 0 5px 0;
+  }
+
+  .timeinput {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeinput label {
+    margin-bottom: -12px;
+  }
+
+  .desktopTime {
+    display: none;
+  }
+
+  .mobileTime {
+    display: block;
+  }
+
+  .remove {
+    position: absolute;
+    margin: 20px 0px;
+    top: -78px;
+    right: 0px;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .timings__buttondiv {
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    width: 20%;
+  }
+
+  .timeinput {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timings__buttondiv {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    gap: 0px;
+    margin-left: 25px;
+  }
+
+  .remove {
+    position: absolute;
+    margin: 20px 25px;
+    top: -78px;
+    right: -20px;
+    font-size: 20px;
+  }
+}

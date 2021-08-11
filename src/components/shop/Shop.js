@@ -1,81 +1,70 @@
 import React from "react";
-import classes from "../Dashboard/dashboard.module.css";
-import NoImage from "../../image/No_Image_Available.jpg";
-import { useHistory, useLocation } from "react-router-dom";
+import ShopCardComponent from "../shopCardComponent/ShopCardComponent";
+import Slider from "react-slick";
+import classes from "./shop.module.css";
+import { useLocation } from "react-router-dom";
+import SkeletonCard from "../../skeletons/SkeletonCard";
 
-const Shop = ({ docs }) => {
-  const history = useHistory();
+const Shop = ({ docs, settings, loading }) => {
   const location = useLocation();
 
-  return (
-    <div className={classes.container}>
-      {location.pathname === "/admin/dashboard" || location.pathname === "/"
-        ? docs?.slice(0, 3).map((doc, i) => (
-            <div
-              className={classes.wrapper}
-              key={i}
-              onClick={() =>
-                location.pathname.split("/")[1] === "admin"
-                  ? history.push(
-                      "/admin/" +
-                        doc.mallName +
-                        "/shops/" +
-                        doc.shops[0].shopName
-                    )
-                  : history.push(
-                      doc.mallName + "/shops/" + doc.shops[0].shopName
-                    )
-              }
-            >
-              {doc?.hasOwnProperty("shops") ? (
-                <>
-                  <div className={classes.imageContainer}>
-                    {doc.shops.length > 0 && doc.shops[0].shopImages && (
-                      <img
-                        src={
-                          doc?.shops[0]
-                            ? doc?.shops[0]?.shopImages[0]?.url
-                            : NoImage
-                        }
-                        alt="shopImages"
-                        className={classes.image}
-                      />
-                    )}
-                  </div>
+  let empty = docs.map((doc) => doc.shops.length);
 
-                  <p className={classes.title}>{doc?.shops[0]?.shopName}</p>
-                </>
-              ) : null}
-              <p>( Inside {doc.mallName})</p>
-            </div>
-          ))
-        : docs.map((doc, i) =>
-            doc.shops.map((shop, ind) => (
-              <div
-                key={ind}
-                className={classes.wrapper}
-                onClick={() =>
-                  location.pathname.split("/")[1] === "admin"
-                    ? history.push(
-                        "/admin/" + doc.mallName + "/shops/" + shop.shopName
-                      )
-                    : history.push(doc.mallName + "/shops/" + shop.shopName)
-                }
-              >
-                <div className={classes.imageContainer}>
-                  {doc.shops[0].shopImages && (
-                    <img
-                      className={classes.image}
-                      src={shop.shopImages[0].url}
-                      alt=""
-                    />
-                  )}
-                </div>
-                <p className={classes.title}>{shop.shopName}</p>
-                <p>(Inside {doc.mallName})</p>
+  let emptyCheck = Math.max.apply(0, empty);
+
+  return (
+    <div>
+      {location.pathname === "/" ||
+      location.pathname === "/admin/dashboard" ||
+      location.pathname.split("/").includes("home") ? (
+        <div>
+          {loading ? (
+            <>
+              <div className={classes.sliderSkeletonDesktop}>
+                {[1, 2, 3].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
               </div>
-            ))
+              <div className={classes.sliderSkeletonTab}>
+                {[1, 2].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
+              </div>
+              <div className={classes.sliderSkeletonMobile}>
+                {[1].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <Slider {...settings} className={classes.slider}>
+              {docs.length !== 0 ? (
+                docs.map((doc) => (
+                  <div key={doc.id}>
+                    <ShopCardComponent doc={doc} />
+                  </div>
+                ))
+              ) : (
+                <p>No any Records</p>
+              )}
+            </Slider>
           )}
+        </div>
+      ) : (
+        <div>
+          {loading ? (
+            <div className={classes.container}>
+              {[1, 2, 3, 4, 5, 6].map((n) => (
+                <SkeletonCard key={n} />
+              ))}
+            </div>
+          ) : emptyCheck !== 0 ? (
+            <ShopCardComponent malls={docs} />
+          ) : (
+            <p className={classes.noRecords}>No any records</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

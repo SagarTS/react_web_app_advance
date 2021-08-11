@@ -1,0 +1,65 @@
+.timingsform {
+  padding: 10px 0;
+  width: 100%;
+  /* background-color: black; */
+}
+
+.input__radio {
+  display: flex;
+  gap: 50px;
+  width: 55%;
+  margin: 10px 2px;
+}
+
+.input__radio label {
+  margin-left: 5px;
+  width: auto;
+}
+
+.button__showmore {
+  text-align: left;
+  color: #2e6fba;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .input__radio {
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .timingsform {
+    padding: 0px 0;
+  }
+
+  .input__radio {
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .timingsform {
+    padding: 0px 0;
+  }
+
+  .input__radio {
+    width: 100%;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .input__radio div {
+    margin-bottom: 3px;
+  }
+
+  .button__showmore {
+    margin: -4px 0 20px 0;
+  }
+}

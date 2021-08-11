@@ -1,0 +1,433 @@
+.userName {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(255, 0, 106);
+  font-weight: bold;
+  color: white;
+  font-size: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.navButton {
+  display: flex;
+  margin-right: 30px;
+  justify-content: space-between;
+  width: 240px;
+}
+
+/* Pages */
+
+.topImage {
+  width: 100%;
+  position: relative;
+  margin-top: 65px;
+}
+
+.topImage img {
+  width: 100%;
+  height: 408px;
+  background-position: center center;
+}
+
+.img::after {
+  content: "";
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 408px;
+}
+
+.text {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.text h3 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.text p {
+  font-size: 25px;
+}
+
+.search {
+  position: absolute;
+  width: 579px;
+  top: 388px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.search .icon {
+  color: #827d7d;
+  font-size: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  margin-left: 10px;
+}
+
+.searchBar {
+  height: 40px;
+  position: absolute;
+  width: 579px;
+  padding: 10px;
+  padding-left: 40px;
+  outline: none;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar:focus {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.numberMob {
+  display: none;
+}
+
+.bodyWrapper {
+  display: flex;
+  margin: auto;
+  margin-top: 100px;
+  width: 80%;
+  padding: 0;
+  gap: 30px;
+}
+
+.mallContainer {
+  margin-bottom: 88px;
+  position: relative;
+  width: 100%;
+}
+
+.main {
+  width: 85%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.heading {
+  color: #5b5b5b;
+  font-size: 20px;
+  position: absolute;
+  left: 0px;
+}
+
+.view {
+  color: #2e6fba;
+  position: absolute;
+  font-size: 16px;
+  right: 0px;
+  font-weight: bold;
+  margin: 10px;
+  margin-right: 23px;
+}
+
+.view:hover {
+  color: hsl(212, 100%, 67%);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 20px;
+  margin: 20px 0;
+}
+
+.wrapper {
+  max-width: 350px;
+  max-height: 280px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+  /* filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.3)); */
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.imageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.image {
+  width: 350px;
+  height: 200px;
+  transition: all 0.15s ease-in;
+}
+
+.wrapper:hover .image {
+  transform: scale(1.2);
+  transform-origin: 50% 50%;
+}
+
+.wrapper:hover {
+  background-color: rgb(255, 236, 236);
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+.link {
+  margin-bottom: 40px;
+}
+
+.closeIcon {
+  display: none;
+  position: absolute;
+  font-size: 30px;
+  right: 10px;
+  z-index: 100;
+  color: rgba(207, 46, 24, 0.7);
+}
+
+.wrapper:hover .closeIcon {
+  display: block;
+}
+
+.closeIcon:hover {
+  color: rgba(207, 46, 24, 1);
+  /* color: rgb(241, 109, 91); */
+}
+
+.abcd {
+  width: 100px;
+}
+
+.bcd {
+  width: 100px;
+}
+
+.showCategoryDropdown,
+.hideCategoryDropdown {
+  background-color: white;
+  max-height: 50%;
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  top: 0%;
+  transition: all 0.5s ease-in;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
+
+.hideCategoryDropdown {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0);
+  top: -50%;
+}
+
+@media only screen and (min-width: 1281px) {
+  .search {
+    top: 383px;
+    left: 50%;
+    transform: translateX(-60%);
+  }
+
+  .search .icon {
+    color: #827d7d;
+    font-size: 25px;
+    position: absolute;
+    z-index: 1;
+    top: 14px;
+    margin-left: 10px;
+  }
+
+  .searchBar {
+    height: 50px;
+    width: 679px;
+    padding-left: 40px;
+  }
+}
+
+@media screen and (max-width: 1423px) and (min-width: 1281px) {
+  .bodyWrapper {
+    width: 77%;
+  }
+}
+
+@media screen and (max-width: 1601px) and (min-width: 1424px) {
+  .bodyWrapper {
+    width: 68%;
+  }
+}
+
+@media screen and (max-width: 1708px) and (min-width: 1601px) {
+  .bodyWrapper {
+    width: 63.5%;
+  }
+}
+
+@media screen and (max-width: 1921px) and (min-width: 1708px) {
+  .bodyWrapper {
+    width: 56.5%;
+  }
+}
+
+@media only screen and (min-width: 1921px) {
+  .bodyWrapper {
+    width: 42.5%;
+  }
+}
+
+/* ------------ Tab View -------------- */
+@media only screen and (max-width: 1024px) {
+  .view {
+    right: 9%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    width: 85%;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .bodyWrapper {
+    width: 75%;
+    gap: 0px;
+  }
+
+  .mallContainer {
+    width: 85%;
+  }
+
+  .view {
+    right: -5px;
+  }
+
+  .topImage img {
+    height: 380px;
+  }
+
+  .img::after {
+    height: 380px;
+  }
+
+  .search {
+    top: 360px;
+  }
+
+  .text h3 {
+    font-size: 35px;
+    margin-bottom: 10px;
+  }
+
+  .text p {
+    font-size: 20px;
+  }
+}
+
+/* ------------ Mobile View ------------ */
+@media only screen and (max-width: 414px) {
+  .bodyWrapper {
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .main {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .topImage {
+    width: 100%;
+    position: relative;
+    margin-top: 55px;
+  }
+
+  .topImage img {
+    width: 100%;
+    height: 220px;
+    background-position: center center;
+    object-fit: cover;
+  }
+
+  .img::after {
+    height: 220px;
+  }
+
+  .search {
+    position: absolute;
+    width: 80%;
+    top: 195px;
+  }
+
+  .search .icon {
+    right: 18px;
+    top: 50%;
+    transform: translateY(50%);
+    font-size: 25px;
+  }
+
+  .searchBar {
+    height: 50px;
+    width: 100%;
+    border-radius: 3px;
+    padding-left: 22px;
+    font-size: 17px;
+  }
+
+  .text {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-12%, -50%);
+    text-align: center;
+  }
+
+  .text h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .text p {
+    font-size: 20px;
+  }
+
+  .main {
+    width: 100%;
+    margin: auto;
+    margin-top: 0px;
+    position: relative;
+    /* background-color: black; */
+  }
+
+  .mallContainer {
+    margin-bottom: 88px;
+    /* position: relative; */
+    width: 100%;
+  }
+
+  .view {
+    right: 0px;
+    margin: 10px;
+    margin-right: 0px;
+  }
+}

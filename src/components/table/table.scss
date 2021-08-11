@@ -1,5 +1,6 @@
 @import "scss/abstracts/_variables.scss";
 @import "scss/abstracts/_mixins.scss";
+$table-row-height: 45px;
 
 .table {
   display: grid;
@@ -12,8 +13,9 @@
     grid-auto-flow: column dense;
     grid-template-columns: 50px repeat(2, 1fr);
     padding: 10px;
-    min-height: 40px;
+    height: $table-row-height;
     align-items: center;
+    z-index: 100;
   }
   &__header {
     background-color: $table-header-background;
@@ -48,18 +50,30 @@
   }
   .table-inner-row {
     background-color: #e5e7eb;
-    padding: 20px;
-    opacity: 0;
-    transition: 0.2s all ease-in-out;
+    //padding: 20px;
+    z-index: 1;
+
+    &.fade-in {
+      animation: fade-in 1s linear, padding-in 0.1s linear;
+      -webkit-animation: fade-in 1s linear, padding-in 0.2s linear;
+      padding: 20px;
+    }
+    &.fade-out {
+      animation: fade-in 0.1s linear forwards, padding-out 0.3s linear;
+      -webkit-animation: fade-in 0.1s linear forwards, padding-out 0.3s linear;
+      padding: 0;
+    }
+    .table {
+      max-height: 0;
+      overflow: auto;
+      transition: all 0.3s ease;
+    }
   }
   .table {
     border-radius: 3px;
   }
   .is-row-expanded {
     background-color: $table-header-background;
-    .table-inner-row {
-      opacity: 1;
-    }
     .btn-arrow {
       -webkit-transform: rotate(90deg);
       -moz-transform: rotate(90deg);
@@ -67,12 +81,18 @@
       -o-transform: rotate(90deg);
       transform: rotate(90deg);
     }
+    .table-inner-row {
+      .table {
+        max-height: 300px;
+      }
+    }
   }
   .row-content {
-    height: 40px;
-    transition: 0.3s all ease-in-out;
+    max-height: $table-row-height;
+    transition: 0.3s all ease-out;
     &.is-row-expanded {
-      height: Calc(100% - 80px);
+      max-height: 100%;
+      transition: 0.3s all ease-in;
     }
   }
   .toggle-icon {
@@ -89,5 +109,23 @@
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
+  }
+}
+
+@keyframes padding-in {
+  from {
+    padding: 0;
+  }
+  to {
+    padding: 20px;
+  }
+}
+
+@keyframes padding-out {
+  from {
+    padding: 20px;
+  }
+  to {
+    padding: 0;
   }
 }

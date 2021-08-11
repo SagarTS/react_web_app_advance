@@ -1,5 +1,4 @@
-
-const addedShopImagesReducer = (state,action) => {
+const addedShopImagesReducer = (state, action) => {
   switch (action.type) {
     case "ADD":
       const newArray = state.map((item) =>
@@ -20,6 +19,7 @@ const addedShopImagesReducer = (state,action) => {
               images: [action.payload.selectedShopImages],
             },
           ];
+
       return finalArray;
 
     case "REMOVE_IMAGE":
@@ -29,12 +29,15 @@ const addedShopImagesReducer = (state,action) => {
             ? {
                 ...item,
                 images: item.images.filter(
-                  (i) => i.name !== action.payload.name
+                  (i, index) => index !== action.payload.id
                 ),
               }
             : item
         ),
       ];
+
+    case "SET_IMAGES":
+      return [...action.payload.images.map((image, index) => ({ id: index }))];
 
     default:
       return state;

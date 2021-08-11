@@ -1,153 +1,64 @@
 import React from "react";
-import classes from "../Dashboard/dashboard.module.css";
-import NoImage from "../../image/No_Image_Available.jpg";
-import { useHistory, useLocation } from "react-router-dom";
-import { fireStore, storage } from "../../firebase/config";
+import classes from "./mall.module.css";
+import MallCardComponent from "../mallCardComponent/MallCardComponent";
 
-const Mall = ({ docs }) => {
-  console.log("malls", docs);
-  const history = useHistory();
+import Slider from "react-slick";
+
+import { useLocation } from "react-router-dom";
+
+import SkeletonCard from "../../skeletons/SkeletonCard";
+
+const Mall = ({ docs, settings, loading }) => {
   const location = useLocation();
 
   return (
-    <div className={classes.container}>
-      {docs?.map((doc, ind) =>
-        location.pathname === "/admin/dashboard" ||
-        location.pathname === "/" ? (
-          ind <= 2 && (
-            <div
-              className={classes.wrapper}
-              key={doc.id}
-              onClick={() => {
-                location.pathname.split("/")[1] === "admin"
-                  ? history.push("/admin/malls/" + doc.id.replace(" ", "_"))
-                  : history.push("/malls/" + doc.id.replace(" ", "_"));
-              }}
-            >
-              {doc.mallImage ? (
-                <div className={classes.imageContainer}>
-                  {location.pathname === "/admin/dashboard" && (
-                    <div
-                      className={classes.closeIcon}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        fireStore
-                          .collection("Shopping Mall")
-                          .doc(doc.mallName)
-                          .delete()
-                          .then(() => console.log("DELETED Successfully"))
-                          .catch((error) => console.log("Error deleting mall"));
-                        let storageRef = storage.ref();
-                        let mallImageDel = storageRef.child(
-                          doc.mallImage.imageName
-                        );
-
-                        //Shop Images
-                        doc.shops.map((shop) =>
-                          shop.shopImages.map((s) =>
-                            storageRef
-                              .child(s.ImageName)
-                              .delete()
-                              .then(() => "Images Deleted SuccessFUlly")
-                              .catch((err) => "Images Not Deleted")
-                          )
-                        );
-
-                        //Deleting Images
-                        mallImageDel
-                          .delete()
-                          .then(() => "Images Deleted SuccessFUlly")
-                          .catch((err) => "Images Not Deleted");
-                      }}
-                    >
-                      <i className="fad fa-times-circle"></i>{" "}
-                    </div>
-                  )}
-                  <div>
-                    <img
-                      className={classes.image}
-                      src={doc.mallImage.imageUrl}
-                      alt="images"
-                    />
+    <div>
+      {location.pathname === "/" ||
+      location.pathname === "/admin/dashboard" ||
+      location.pathname.split("/").includes("home") ? (
+        <div className={classes.sliderContainer}>
+          {loading ? (
+            <>
+              <div className={classes.sliderSkeletonDesktop}>
+                {[1, 2, 3].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
+              </div>
+              <div className={classes.sliderSkeletonTab}>
+                {[1, 2].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
+              </div>
+              <div className={classes.sliderSkeletonMobile}>
+                {[1].map((n) => (
+                  <SkeletonCard key={n} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <Slider {...settings} className={classes.slider}>
+              {docs.length !== 0 ? (
+                docs?.map((doc, ind) => (
+                  <div key={ind}>
+                    <MallCardComponent key={doc.id} doc={doc} />
                   </div>
-                </div>
+                ))
               ) : (
-                <div className={classes.imageContainer}>
-                  <img className={classes.image} src={NoImage} alt="images" />
-                </div>
+                <p className={classes.noRecords}>No any Records</p>
               )}
-              <p className={classes.title}>{doc.mallName}</p>
-              <p>({doc.mallAddress})</p>
-            </div>
-          )
-        ) : (
-          <div
-            className={classes.wrapper}
-            key={doc.id}
-            onClick={() =>
-              location.pathname.split("/")[1] !== "admin"
-                ? history.push("/malls/" + doc.id.replace(" ", "_"))
-                : history.push("/admin/malls/" + doc.id.replace(" ", "_"))
-            }
-          >
-            {doc.mallImage ? (
-              <div className={classes.imageContainer}>
-                {location.pathname !== "/malls" && (
-                  <div
-                    className={classes.closeIcon}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      fireStore
-                        .collection("Shopping Mall")
-                        .doc(doc.mallName)
-                        .delete()
-                        .then(() => console.log("DELETED Successfully"))
-                        .catch((error) => console.log("Error deleting mall"));
-                      let storageRef = storage.ref();
-                      let mallImageDel = storageRef.child(
-                        doc.mallImage.imageName
-                      );
-
-                      //Shop Images
-                      doc &&
-                        doc.shops.map((shop) =>
-                          shop.shopImages.map((s) =>
-                            storageRef
-                              .child(s.ImageName)
-                              .delete()
-                              .then(() => "Images Deleted SuccessFUlly")
-                              .catch((err) => "Images Not Deleted")
-                          )
-                        );
-
-                      //Deleting Images
-                      mallImageDel
-                        .delete()
-                        .then(() => "Images Deleted SuccessFUlly")
-                        .catch((err) => "Images Not Deleted");
-                    }}
-                  >
-                    <i className="fad fa-times-circle"></i>{" "}
-                  </div>
-                )}
-
-                <div>
-                  <img
-                    className={classes.image}
-                    src={doc.mallImage.imageUrl}
-                    alt="images"
-                  />
-                </div>
-              </div>
-            ) : (
-              <div className={classes.imageContainer}>
-                <img className={classes.image} src={NoImage} alt="images" />
-              </div>
-            )}
-            <p className={classes.title}>{doc.mallName}</p>
-            <p>({doc.mallAddress})</p>
-          </div>
-        )
+            </Slider>
+          )}
+        </div>
+      ) : (
+        <div className={classes.container}>
+          {loading ? (
+            [1, 2, 3, 4, 5, 6].map((n) => <SkeletonCard key={n} />)
+          ) : docs.length !== 0 ? (
+            docs?.map((doc) => <MallCardComponent key={doc.id} doc={doc} />)
+          ) : (
+            <p className={classes.noRecords}>No any Malls Yet.</p>
+          )}
+        </div>
       )}
     </div>
   );

@@ -1,13 +1,168 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+@font-face {
+  font-family: "Cabin";
+  src: local("Cabin"), url(./assets//Cabin/Cabin-Regular.ttf) format("woff");
+}
+
+* {
+  font-family: "Cabin", sans-serif;
+}
 
 body {
   margin: 0;
-  font-family: "Ubuntu", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.body {
+  min-height: 485px;
+}
+
+.slick-disabled {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.slick-list > .slick-track {
+  margin-left: 0;
+}
+
+.thumbnail img {
+  max-width: 100px;
+  height: 60px;
+  background-color: black;
+}
+
+.original img {
+  height: 86vh;
+}
+
+.originalVideo img {
+  height: 86vh;
+}
+
+.image-gallery-index {
+  background: rgba(255, 255, 255, 0.5) !important;
+  color: #fff;
+  line-height: 1;
+  padding: 10px 20px;
+  position: absolute;
+  right: 94% !important;
+  top: 10px;
+  z-index: 4;
+  display: flex;
+}
+
+@media screen and (max-width: 1423px) and (min-width: 1281px) {
+  .original img {
+    height: 87.7vh;
+  }
+
+  .originalVideo img {
+    height: 87.7vh;
+  }
+}
+
+@media screen and (max-width: 1601px) and (min-width: 1424px) {
+  .body {
+    min-height: 612px;
+  }
+
+  .original img {
+    height: 88.7vh;
+  }
+
+  .originalVideo img {
+    height: 88.7vh;
+  }
+}
+
+@media screen and (max-width: 1708px) and (min-width: 1601px) {
+  .body {
+    min-height: 612px;
+  }
+
+  .original img {
+    height: 89.7vh;
+  }
+
+  .originalVideo img {
+    height: 89.7vh;
+  }
+}
+
+@media screen and (max-width: 1921px) and (min-width: 1708px) {
+  .body {
+    min-height: 612px;
+  }
+
+  .original img {
+    height: 90.8vh;
+  }
+
+  .originalVideo img {
+    height: 90.8vh;
+  }
+}
+
+@media screen and (min-width: 1921px) {
+  .body {
+    min-height: 829px;
+  }
+
+  .original img {
+    height: 93vh;
+  }
+
+  .originalVideo img {
+    height: 93vh;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .body {
+    min-height: 1039px;
+  }
+
+  .original img {
+    height: 47vh;
+  }
+
+  .originalVideo img {
+    height: 100%;
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .body {
+    min-height: 699px;
+  }
+
+  .original img {
+    height: 45vh;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .body {
+    min-height: 485px;
+  }
+
+  .original img {
+    height: 100%;
+    padding: 45px;
+  }
+
+  .originalVideo img {
+    height: 100%;
+    width: 80%;
+  }
+
+  .image-gallery-index {
+    background: rgba(0, 0, 0, 1) !important;
+    right: 91% !important;
+    display: flex;
+  }
 }
